@@ -17,7 +17,7 @@
             <tr>
                 <td>Kelembapan</td>
                 <td> : </td>
-                <td><input type="number" name="kelembapan" placeholder="Masukkan 0-100"> %</td>
+                <td><input type="number" name="kelembapan" placeholder="Masukkan 0-100" required> %</td>
             </tr>
             <tr>
                 <td>Tinggi Air</td>
@@ -79,10 +79,70 @@ if (isset($_POST["submit"])) {
             $nilaisuhumaksimal = 0;
         }
     }
-    echo $nilaisuhuminimum;
+    echo "Nilai Suhu Minimum = $nilaisuhuminimum";
     echo "<br>";
-    echo $nilaisuhuoptimal;
+    echo "Nilai Suhu optimal = $nilaisuhuoptimal";
     echo "<br>";
-    echo $nilaisuhumaksimal;
+    echo "Nilai Suhu Maksimal = $nilaisuhumaksimal";
+}
+//GRAFIK KELEMBAPAN
+$nilaikelembapantidaksesuai = 0;
+$nilaikelembapansesuai = 0;
+$nilaikelembapansangatsesuai = 0;
+if (isset($_POST["submit"])) {
+    //tidak sesuai awal
+    if ($_POST['suhu'] <= 50) {
+        $nilaikelembapantidaksesuai = 1;
+    } else {
+        if ($_POST['suhu'] < 60) {
+            $nilaikelembapantidaksesuai = (60 - $_POST['suhu']) / 10;
+        } else {
+            $nilaikelembapantidaksesuai = 0;
+        }
+    }
+    //sangat sesuai
+    if ($_POST['suhu'] >= 50 && $_POST['suhu'] <= 80) {
+        if ($_POST['suhu'] >= 60 && $_POST['suhu'] <= 70) {
+            $nilaikelembapansangatsesuai = 1;
+        } else {
+            if ($_POST['suhu'] >= 50 && $_POST['suhu'] < 60) {
+                $nilaikelembapansangatsesuai = ($_POST['suhu'] - 50) / 10;
+            } else {
+                if ($_POST['suhu'] > 70 && $_POST['suhu'] < 80) {
+                    $nilaikelembapansangatsesuai = (80 - $_POST['suhu']) / 10;
+                } else {
+                    $nilaikelembapansangatsesuai = 0;
+                }
+            }
+        }
+    }
+    //sesuai
+    if ($_POST['suhu'] <= 70 || $_POST['suhu'] >= 85) {
+        $nilaikelembapansesuai = 0;
+    } else {
+        if ($_POST['suhu'] > 70 && $_POST['suhu'] < 80) {
+            $nilaikelembapansesuai = ($_POST['suhu'] - 70) / 10;
+        } else {
+            if ($_POST['suhu'] >= 80 && $_POST['suhu'] < 85) {
+                $nilaikelembapansesuai = (85 - $_POST['suhu']) / 5;
+            }
+        }
+    }
+    //tidak sesuai akhir
+    if ($_POST['suhu'] >= 85) {
+        $nilaikelembapantidaksesuai = 1;
+    } else {
+        if ($_POST['suhu'] >= 83 && $_POST['suhu'] < 85) {
+            $nilaikelembapantidaksesuai = ($_POST['suhu'] - 83) / 2;
+        } else {
+            $nilaikelembapantidaksesuai = 0;
+        }
+    }
+    echo "<br>";
+    echo "Nilai Kelembapan Tidak Sesuai = $nilaikelembapantidaksesuai";
+    echo "<br>";
+    echo "Nilai Kelembapan Sesuai = $nilaikelembapansesuai";
+    echo "<br>";
+    echo "Nilai Kelembapan Sangat Sesuai = $nilaikelembapansangatsesuai";
 }
 ?>
