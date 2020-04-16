@@ -7,3 +7,5 @@ Ini merupakan tugas Kecerdasan Buatan - Telkom University. Membuat aplikasi deng
 5.  Metoda Inference Mamdani
 6.  Metoda Deffuzifikasi Centroid Method
 7.  Bahasa pemrograman yang digunakan tidak boleh Mathlab
+# Ricezzy
+Aplikasi ini bernama Ricezzy. Ricezzy merupakan aplikasi irigasi/penyiram otomatis tanaman padi untuk menghasilkan beras yang berkualitas. Ricezzy menggunakan fuzzy mamdani untuk mengambil keputusan seberapa banyak air yang akan disiram.
