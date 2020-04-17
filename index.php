@@ -159,7 +159,6 @@ if (isset($_POST["submit"])) {
 //GRAFIK TINGGI AIR
 $nilaitinggiairkering = 0;
 $nilaitinggiairideal = 0;
-$nilaitinggiaircukup = 0;
 $nilaitinggiairbanjir = 0;
 if (isset($_POST["tinggiair"])) {
     //tinggi air kering
@@ -180,23 +179,11 @@ if (isset($_POST["tinggiair"])) {
             if ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] < 3) {
                 $nilaitinggiairideal = ($_POST['tinggiair'] - 2);
             } else {
-                if ($_POST['tinggiair'] > 5 && $_POST['tinggiair'] <= 7) {
-                    $nilaitinggiairideal = (7 - $_POST['tinggiair']) / 2;
+                if ($_POST['tinggiair'] > 5 && $_POST['tinggiair'] <= 8) {
+                    $nilaitinggiairideal = (8 - $_POST['tinggiair']) / 3;
                 } else {
                     $nilaitinggiairideal = 0;
                 }
-            }
-        }
-    }
-    //tinggi air cukup
-    if ($_POST['tinggiair'] < 7 || $_POST['tinggiair'] > 10) {
-        $nilaitinggiaircukup = 0;
-    } else {
-        if ($_POST['tinggiair'] >= 7 && $_POST['tinggiair'] <= 8) {
-            $nilaitinggiaircukup = ($_POST['tinggiair'] - 7);
-        } else {
-            if ($_POST['tinggiair'] > 8 && $_POST['tinggiair'] <= 10) {
-                $nilaitinggiaircukup = (10 - $_POST['tinggiair']) / 2;
             }
         }
     }
@@ -215,8 +202,6 @@ if (isset($_POST["tinggiair"])) {
     echo "Nilai Tinggi Air Kering = $nilaitinggiairkering";
     echo "<br>";
     echo "Nilai Tinggi Air Ideal = $nilaitinggiairideal";
-    echo "<br>";
-    echo "Nilai Tinggi Air Cukup = $nilaitinggiaircukup";
     echo "<br>";
     echo "Nilai Tinggi Air Banjir = $nilaitinggiairbanjir";
 }
