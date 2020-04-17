@@ -94,11 +94,10 @@ if (isset($_POST["submit"])) {
 }
 //GRAFIK KELEMBAPAN
 $kelembapantidaklembab = 0;
-$nilaikelembapansesuai = 0;
 $nilaikelembapansangatsesuai = 0;
 $kelembapanlembab = 0;
 if (isset($_POST["submit"])) {
-    //tidak sesuai awal
+    //tidak LEMBAB
     if ($_POST['kelembapan'] <= 50) {
         $kelembapantidaklembab = 1;
     } else {
@@ -124,19 +123,7 @@ if (isset($_POST["submit"])) {
             }
         }
     }
-    //sesuai
-    if ($_POST['kelembapan'] <= 70 || $_POST['kelembapan'] >= 85) {
-        $nilaikelembapansesuai = 0;
-    } else {
-        if ($_POST['kelembapan'] > 70 && $_POST['kelembapan'] < 80) {
-            $nilaikelembapansesuai = ($_POST['kelembapan'] - 70) / 10;
-        } else {
-            if ($_POST['kelembapan'] >= 80 && $_POST['kelembapan'] < 85) {
-                $nilaikelembapansesuai = (85 - $_POST['kelembapan']) / 5;
-            }
-        }
-    }
-    //tidak sesuai akhir
+    //LEMBAB
     if ($_POST['kelembapan'] >= 85) {
         $kelembapanlembab = 1;
     } else {
@@ -152,15 +139,13 @@ if (isset($_POST["submit"])) {
     echo "<br>";
     echo "Nilai Kelembapan Sangat Sesuai = $nilaikelembapansangatsesuai";
     echo "<br>";
-    echo "Nilai Kelembapan Sesuai = $nilaikelembapansesuai";
-    echo "<br>";
     echo "Nilai Kelembapan Lembab = $kelembapanlembab";
 }
 //GRAFIK TINGGI AIR
 $nilaitinggiairkering = 0;
 $nilaitinggiairideal = 0;
 $nilaitinggiairbanjir = 0;
-if (isset($_POST["tinggiair"])) {
+if (isset($_POST["submit"])) {
     //tinggi air kering
     if ($_POST['tinggiair'] <= 1) {
         $nilaitinggiairkering = 1;
@@ -204,5 +189,101 @@ if (isset($_POST["tinggiair"])) {
     echo "Nilai Tinggi Air Ideal = $nilaitinggiairideal";
     echo "<br>";
     echo "Nilai Tinggi Air Banjir = $nilaitinggiairbanjir";
+}
+
+//RULES
+if (isset($_POST["submit"])) {
+    //MINIMUM-TIDAK LEMBAB
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //MINIMUM-SANGAT SESUAI
+    if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //MINIMUM-LEMBAB
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //OPTIMAL-TIDAK LEMBAB
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //OPTIMAL-SANGAT SESUAI
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //OPTIMAL-LEMBAB
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //MASIMUM-TIDAK LEMBAB
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //MAKSIMUM-SANGAT SESUAI
+    if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    //MAKSIMUM-LEMBAB
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
+        $irigasi = "BANYAK";
+    }
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] >= 8)) {
+        $irigasi = "SEDIKIT";
+    }
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
+        $irigasi = "SEDIKIT";
+    }
+    echo "<br>";
+    echo $irigasi;
 }
 ?>
