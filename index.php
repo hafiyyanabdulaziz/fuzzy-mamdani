@@ -37,11 +37,12 @@
 </html>
 
 <?php
-//GRAFIK SUHU
-$nilaisuhuminimum = 0;
-$nilaisuhuoptimal = 0;
-$nilaisuhumaksimal = 0;
 if (isset($_POST["submit"])) {
+    menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+}
+function menampilkannilaiinput($suhu, $kelembapan, $tinggiair)
+{
     echo "<h2>Solusi</h2>";
     echo "Suhu : " . $_POST['suhu'];
     echo "<br>";
@@ -50,26 +51,38 @@ if (isset($_POST["submit"])) {
     echo "Tiggi Air : " . $_POST['tinggiair'];
     echo "<br>";
     echo "<br>";
+}
+function menghitungnilaigrafik($suhu, $kelembapan, $tinggiair)
+{
+    grafiksuhu($suhu);
+    grafikkelembapan($kelembapan);
+    grafiktinggiair($tinggiair);
+}
+function grafiksuhu($suhu)
+{
+    $nilaisuhuminimum = 0;
+    $nilaisuhuoptimal = 0;
+    $nilaisuhumaksimal = 0;
     //suhu minimum
-    if ($_POST['suhu'] <= 5) {
+    if ($suhu <= 5) {
         $nilaisuhuminimum = 1;
     } else {
-        if ($_POST['suhu'] < 15) {
-            $nilaisuhuminimum = (15 - $_POST['suhu']) / 10;
+        if ($suhu < 15) {
+            $nilaisuhuminimum = (15 - $suhu) / 10;
         } else {
             $nilaisuhuminimum = 0;
         }
     }
     //suhu optimal
-    if ($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) {
-        if ($_POST['suhu'] >= 25 && $_POST['suhu'] <= 30) {
+    if ($suhu >= 15 && $suhu <= 35) {
+        if ($suhu >= 25 && $suhu <= 30) {
             $nilaisuhuoptimal = 1;
         } else {
-            if ($_POST['suhu'] >= 15 && $_POST['suhu'] < 25) {
-                $nilaisuhuoptimal = ($_POST['suhu'] - 15) / 10;
+            if ($suhu >= 15 && $suhu < 25) {
+                $nilaisuhuoptimal = ($suhu - 15) / 10;
             } else {
-                if ($_POST['suhu'] > 30 && $_POST['suhu'] < 35) {
-                    $nilaisuhuoptimal = (35 - $_POST['suhu']) / 5;
+                if ($suhu > 30 && $suhu < 35) {
+                    $nilaisuhuoptimal = (35 - $suhu) / 5;
                 } else {
                     $nilaisuhuoptimal = 0;
                 }
@@ -77,11 +90,11 @@ if (isset($_POST["submit"])) {
         }
     }
     //suhu maksimal
-    if ($_POST['suhu'] >= 35) {
+    if ($suhu >= 35) {
         $nilaisuhumaksimal = 1;
     } else {
-        if ($_POST['suhu'] >= 30 && $_POST['suhu'] < 35) {
-            $nilaisuhumaksimal = ($_POST['suhu'] - 30) / 5;
+        if ($suhu >= 30 && $suhu < 35) {
+            $nilaisuhumaksimal = ($suhu - 30) / 5;
         } else {
             $nilaisuhumaksimal = 0;
         }
@@ -92,31 +105,31 @@ if (isset($_POST["submit"])) {
     echo "<br>";
     echo "Nilai Suhu Maksimal = $nilaisuhumaksimal";
 }
-//GRAFIK KELEMBAPAN
-$kelembapantidaklembab = 0;
-$nilaikelembapansangatsesuai = 0;
-$kelembapanlembab = 0;
-if (isset($_POST["submit"])) {
+function grafikkelembapan($kelembapan)
+{
+    $kelembapantidaklembab = 0;
+    $nilaikelembapansangatsesuai = 0;
+    $kelembapanlembab = 0;
     //tidak LEMBAB
-    if ($_POST['kelembapan'] <= 50) {
+    if ($kelembapan <= 50) {
         $kelembapantidaklembab = 1;
     } else {
-        if ($_POST['kelembapan'] < 60) {
-            $kelembapantidaklembab = (60 - $_POST['kelembapan']) / 10;
+        if ($kelembapan < 60) {
+            $kelembapantidaklembab = (60 - $kelembapan) / 10;
         } else {
             $kelembapantidaklembab = 0;
         }
     }
     //sangat sesuai
-    if ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) {
-        if ($_POST['kelembapan'] >= 60 && $_POST['kelembapan'] <= 70) {
+    if ($kelembapan >= 50 && $kelembapan <= 80) {
+        if ($kelembapan >= 60 && $kelembapan <= 70) {
             $nilaikelembapansangatsesuai = 1;
         } else {
-            if ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] < 60) {
-                $nilaikelembapansangatsesuai = ($_POST['kelembapan'] - 50) / 10;
+            if ($kelembapan >= 50 && $kelembapan < 60) {
+                $nilaikelembapansangatsesuai = ($kelembapan - 50) / 10;
             } else {
-                if ($_POST['kelembapan'] > 70 && $_POST['kelembapan'] < 80) {
-                    $nilaikelembapansangatsesuai = (80 - $_POST['kelembapan']) / 10;
+                if ($kelembapan > 70 && $kelembapan < 80) {
+                    $nilaikelembapansangatsesuai = (80 - $kelembapan) / 10;
                 } else {
                     $nilaikelembapansangatsesuai = 0;
                 }
@@ -124,11 +137,11 @@ if (isset($_POST["submit"])) {
         }
     }
     //LEMBAB
-    if ($_POST['kelembapan'] >= 85) {
+    if ($kelembapan >= 85) {
         $kelembapanlembab = 1;
     } else {
-        if ($_POST['kelembapan'] >= 83 && $_POST['kelembapan'] < 85) {
-            $kelembapanlembab = ($_POST['kelembapan'] - 83) / 2;
+        if ($kelembapan >= 83 && $kelembapan < 85) {
+            $kelembapanlembab = ($kelembapan - 83) / 2;
         } else {
             $kelembapanlembab = 0;
         }
@@ -141,31 +154,31 @@ if (isset($_POST["submit"])) {
     echo "<br>";
     echo "Nilai Kelembapan Lembab = $kelembapanlembab";
 }
-//GRAFIK TINGGI AIR
-$nilaitinggiairkering = 0;
-$nilaitinggiairideal = 0;
-$nilaitinggiairbanjir = 0;
-if (isset($_POST["submit"])) {
+function grafiktinggiair($tinggiair)
+{
+    $nilaitinggiairkering = 0;
+    $nilaitinggiairideal = 0;
+    $nilaitinggiairbanjir = 0;
     //tinggi air kering
-    if ($_POST['tinggiair'] <= 1) {
+    if ($tinggiair <= 1) {
         $nilaitinggiairkering = 1;
     } else {
-        if ($_POST['tinggiair'] <= 2) {
-            $nilaitinggiairkering = (2 - $_POST['tinggiair']);
+        if ($tinggiair <= 2) {
+            $nilaitinggiairkering = (2 - $tinggiair);
         } else {
             $nilaitinggiairkering = 0;
         }
     }
     //tinggi air ideal
-    if ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 7) {
-        if ($_POST['tinggiair'] >= 3 && $_POST['tinggiair'] <= 5) {
+    if ($tinggiair >= 2 && $tinggiair <= 7) {
+        if ($tinggiair >= 3 && $tinggiair <= 5) {
             $nilaitinggiairideal = 1;
         } else {
-            if ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] < 3) {
-                $nilaitinggiairideal = ($_POST['tinggiair'] - 2);
+            if ($tinggiair >= 2 && $tinggiair < 3) {
+                $nilaitinggiairideal = ($tinggiair - 2);
             } else {
-                if ($_POST['tinggiair'] > 5 && $_POST['tinggiair'] <= 8) {
-                    $nilaitinggiairideal = (8 - $_POST['tinggiair']) / 3;
+                if ($tinggiair > 5 && $tinggiair <= 8) {
+                    $nilaitinggiairideal = (8 - $tinggiair) / 3;
                 } else {
                     $nilaitinggiairideal = 0;
                 }
@@ -173,11 +186,11 @@ if (isset($_POST["submit"])) {
         }
     }
     //tinggi air banjir
-    if ($_POST['tinggiair'] > 10) {
+    if ($tinggiair > 10) {
         $nilaitinggiairbanjir = 1;
     } else {
-        if ($_POST['tinggiair'] >= 8 && $_POST['tinggiair'] <= 10) {
-            $nilaitinggiairbanjir = ($_POST['tinggiair'] - 8) / 2;
+        if ($tinggiair >= 8 && $tinggiair <= 10) {
+            $nilaitinggiairbanjir = ($tinggiair - 8) / 2;
         } else {
             $nilaitinggiairbanjir = 0;
         }
