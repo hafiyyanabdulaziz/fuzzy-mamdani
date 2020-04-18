@@ -247,7 +247,7 @@ function nilaifuzzybanyak($suhu, $kelembapan, $tinggiair)
     $arrayfuzzybanyak[] = min($suhu, $kelembapan, $tinggiair);
     echo "Nilai Fuzzy Banyak: ";
     echo max($arrayfuzzybanyak);
-    echo "<br>"
+    echo "<br>";
 }
 function nilaifuzzysedikit($suhu, $kelembapan, $tinggiair)
 {
@@ -341,9 +341,9 @@ if (isset($_POST["submit"])) {
         $irigasi = "3 1 1 ";
         nilaifuzzybanyak(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
-    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && tinggiairideal($_POST['tinggiair'])) {
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "3 1 2 ";
-        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
         $irigasi = "3 1 3 ";
