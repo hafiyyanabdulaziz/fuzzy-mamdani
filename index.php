@@ -60,9 +60,15 @@ function menghitungnilaigrafik($suhu, $kelembapan, $tinggiair)
 }
 function grafiksuhu($suhu)
 {
+    echo "Nilai Suhu Minimum = " . suhuminimum($suhu);
+    echo "<br>";
+    echo "Nilai Suhu optimal = " . suhuoptimal($suhu);
+    echo "<br>";
+    echo "Nilai Suhu Maksimal = " . suhumaksimal($suhu);
+}
+function suhuminimum($suhu)
+{
     $nilaisuhuminimum = 0;
-    $nilaisuhuoptimal = 0;
-    $nilaisuhumaksimal = 0;
     //suhu minimum
     if ($suhu <= 5) {
         $nilaisuhuminimum = 1;
@@ -73,6 +79,11 @@ function grafiksuhu($suhu)
             $nilaisuhuminimum = 0;
         }
     }
+    return $nilaisuhuminimum;
+}
+function suhuoptimal($suhu)
+{
+    $nilaisuhuoptimal = 0;
     //suhu optimal
     if ($suhu >= 15 && $suhu <= 35) {
         if ($suhu >= 25 && $suhu <= 30) {
@@ -89,6 +100,11 @@ function grafiksuhu($suhu)
             }
         }
     }
+    return $nilaisuhuoptimal;
+}
+function suhumaksimal($suhu)
+{
+    $nilaisuhumaksimal = 0;
     //suhu maksimal
     if ($suhu >= 35) {
         $nilaisuhumaksimal = 1;
@@ -99,17 +115,21 @@ function grafiksuhu($suhu)
             $nilaisuhumaksimal = 0;
         }
     }
-    echo "Nilai Suhu Minimum = $nilaisuhuminimum";
-    echo "<br>";
-    echo "Nilai Suhu optimal = $nilaisuhuoptimal";
-    echo "<br>";
-    echo "Nilai Suhu Maksimal = $nilaisuhumaksimal";
+    return $nilaisuhumaksimal;
 }
 function grafikkelembapan($kelembapan)
 {
+    echo "<br>";
+    echo "<br>";
+    echo "Nilai Kelembapan Tidak Lembab = " . tidaklembab($kelembapan);
+    echo "<br>";
+    echo "Nilai Kelembapan Sangat Sesuai = " . sangatsesuai($kelembapan);
+    echo "<br>";
+    echo "Nilai Kelembapan Lembab = " . lembab($kelembapan);
+}
+function tidaklembab($kelembapan)
+{
     $kelembapantidaklembab = 0;
-    $nilaikelembapansangatsesuai = 0;
-    $kelembapanlembab = 0;
     //tidak LEMBAB
     if ($kelembapan <= 50) {
         $kelembapantidaklembab = 1;
@@ -120,6 +140,11 @@ function grafikkelembapan($kelembapan)
             $kelembapantidaklembab = 0;
         }
     }
+    return $kelembapantidaklembab;
+}
+function sangatsesuai($kelembapan)
+{
+    $nilaikelembapansangatsesuai = 0;
     //sangat sesuai
     if ($kelembapan >= 50 && $kelembapan <= 80) {
         if ($kelembapan >= 60 && $kelembapan <= 70) {
@@ -136,6 +161,11 @@ function grafikkelembapan($kelembapan)
             }
         }
     }
+    return $nilaikelembapansangatsesuai;
+}
+function lembab($kelembapan)
+{
+    $kelembapanlembab = 0;
     //LEMBAB
     if ($kelembapan >= 85) {
         $kelembapanlembab = 1;
@@ -146,19 +176,23 @@ function grafikkelembapan($kelembapan)
             $kelembapanlembab = 0;
         }
     }
-    echo "<br>";
-    echo "<br>";
-    echo "Nilai Kelembapan Tidak Lembab = $kelembapantidaklembab";
-    echo "<br>";
-    echo "Nilai Kelembapan Sangat Sesuai = $nilaikelembapansangatsesuai";
-    echo "<br>";
-    echo "Nilai Kelembapan Lembab = $kelembapanlembab";
+    return $kelembapanlembab;
 }
 function grafiktinggiair($tinggiair)
 {
+    echo "<br>";
+    echo "<br>";
+    echo "Nilai Tinggi Air Kering = " . tinggiairkering($tinggiair);
+    echo "<br>";
+    echo "Nilai Tinggi Air Ideal = " . tinggiairideal($tinggiair);
+    echo "<br>";
+    echo "Nilai Tinggi Air Banjir = " . tinggiairbanjir($tinggiair);
+    echo "<br>";
+    echo "<br>";
+}
+function tinggiairkering($tinggiair)
+{
     $nilaitinggiairkering = 0;
-    $nilaitinggiairideal = 0;
-    $nilaitinggiairbanjir = 0;
     //tinggi air kering
     if ($tinggiair <= 1) {
         $nilaitinggiairkering = 1;
@@ -169,6 +203,11 @@ function grafiktinggiair($tinggiair)
             $nilaitinggiairkering = 0;
         }
     }
+    return $nilaitinggiairkering;
+}
+function tinggiairideal($tinggiair)
+{
+    $nilaitinggiairideal = 0;
     //tinggi air ideal
     if ($tinggiair >= 2 && $tinggiair <= 7) {
         if ($tinggiair >= 3 && $tinggiair <= 5) {
@@ -185,6 +224,11 @@ function grafiktinggiair($tinggiair)
             }
         }
     }
+    return $nilaitinggiairideal;
+}
+function tinggiairbanjir($tinggiair)
+{
+    $nilaitinggiairbanjir = 0;
     //tinggi air banjir
     if ($tinggiair > 10) {
         $nilaitinggiairbanjir = 1;
@@ -195,13 +239,7 @@ function grafiktinggiair($tinggiair)
             $nilaitinggiairbanjir = 0;
         }
     }
-    echo "<br>";
-    echo "<br>";
-    echo "Nilai Tinggi Air Kering = $nilaitinggiairkering";
-    echo "<br>";
-    echo "Nilai Tinggi Air Ideal = $nilaitinggiairideal";
-    echo "<br>";
-    echo "Nilai Tinggi Air Banjir = $nilaitinggiairbanjir";
+    return $nilaitinggiairbanjir;
 }
 function nilaifuzzybanyak($suhu, $kelembapan, $tinggiair)
 {
@@ -209,6 +247,7 @@ function nilaifuzzybanyak($suhu, $kelembapan, $tinggiair)
     $arrayfuzzybanyak[] = min($suhu, $kelembapan, $tinggiair);
     echo "Nilai Fuzzy Banyak: ";
     echo max($arrayfuzzybanyak);
+    echo "<br>"
 }
 function nilaifuzzysedikit($suhu, $kelembapan, $tinggiair)
 {
@@ -222,119 +261,119 @@ if (isset($_POST["submit"])) {
     //MINIMUM-TIDAK LEMBAB
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
         $irigasi = "1 1 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuminimum($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "1 1 2";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
         $irigasi = "1 1 3";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //MINIMUM-SANGAT SESUAI
     if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
         $irigasi = "1 2 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuminimum($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "1 2 2";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
         $irigasi = "1 2 3";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //MINIMUM-LEMBAB
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
         $irigasi = "1 3 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuminimum($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "1 3 2";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] <= 15 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
         $irigasi = "1 3 3";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuminimum($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //OPTIMAL-TIDAK LEMBAB
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
         $irigasi = "2 1 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuoptimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "2 1 2";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
         $irigasi = "2 1 3";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //OPTIMAL-SANGAT SESUAI
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
         $irigasi = "2 2 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuoptimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "2 2 2";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
         $irigasi = "2 2 3 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //OPTIMAL-LEMBAB
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
         $irigasi = "2 3 1 ";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhuoptimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "2 3 2 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if (($_POST['suhu'] >= 15 && $_POST['suhu'] <= 35) && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
         $irigasi = "2 3 3 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhuoptimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //MASIMUM-TIDAK LEMBAB
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] <= 2) {
         $irigasi = "3 1 1 ";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
-    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
+    if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && ($_POST['tinggiair'] >= 2 && tinggiairideal($_POST['tinggiair'])) {
         $irigasi = "3 1 2 ";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), $_POST['tinggiair']);
     }
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] <= 60 && $_POST['tinggiair'] >= 8) {
         $irigasi = "3 1 3 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhumaksimal($_POST['suhu']), tidaklembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //MAKSIMUM-SANGAT SESUAI
     if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] <= 2) {
         $irigasi = "3 2 1";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "3 2 2 ";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] >= 30 && ($_POST['kelembapan'] >= 50 && $_POST['kelembapan'] <= 80) && $_POST['tinggiair'] >= 8) {
         $irigasi = "3 2 3 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhumaksimal($_POST['suhu']), sangatsesuai($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     //MAKSIMUM-LEMBAB
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2) {
         $irigasi = "3 3 1 ";
-        nilaifuzzybanyak($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzybanyak(suhumaksimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairkering($_POST['tinggiair']));
     }
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] <= 2 && ($_POST['tinggiair'] >= 2 && $_POST['tinggiair'] <= 8)) {
         $irigasi = "3 3 2 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhumaksimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairideal($_POST['tinggiair']));
     }
     if ($_POST['suhu'] >= 30 && $_POST['kelembapan'] >= 80 && $_POST['tinggiair'] >= 8) {
         $irigasi = "3 3 3 ";
-        nilaifuzzysedikit($_POST['suhu'], $_POST['kelembapan'], $_POST['tinggiair']);
+        nilaifuzzysedikit(suhumaksimal($_POST['suhu']), lembab($_POST['kelembapan']), tinggiairbanjir($_POST['tinggiair']));
     }
     echo "<br>";
     echo $irigasi;
