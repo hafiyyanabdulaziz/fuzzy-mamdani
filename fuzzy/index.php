@@ -45,6 +45,7 @@ if (isset($_POST["submit"])) {
     //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
     defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
 }
+
 function menampilkannilaiinput($suhu, $kelembapan, $tinggiair)
 {
     echo "<h2>Solusi</h2>";
