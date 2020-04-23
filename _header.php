@@ -1,10 +1,3 @@
-<?php
-require_once "_config/config.php";
-if (!isset($_SESSION['user'])) {
-    echo "<script>window.location='".base_url('auth/login.php')."';</script>";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -15,14 +8,14 @@ if (!isset($_SESSION['user'])) {
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Hafihospital</title>
-    <link href="<?=base_url('_assets/css/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?=base_url('_assets/css/simple-sidebar.css');?>" rel="stylesheet">
-    <link rel="shortcut icon" href="<?=base_url('_assets/bakuhantam-icon.png');?>" type="image/x-icon">
+    <link href="_assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="_assets/css/simple-sidebar.css" rel="stylesheet">
+    <link rel="shortcut icon" href="_assets/bakuhantam-icon.png" type="image/x-icon">
 </head>
 
 <body>
-    <script src="<?=base_url('_assets/js/jquery.js');?>"></script>
-    <script src="<?=base_url('_assets/js/bootstrap.min.js');?>"></script>
+    <script src="_assets/js/jquery.js"></script>
+    <script src="_assets/js/bootstrap.min.js"></script>
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -30,7 +23,7 @@ if (!isset($_SESSION['user'])) {
                     <a href="#"><span class="text-primary"><b>Hafihospital</b></span></a>
                 </li>
                 <li>
-                    <a href="<?=base_url('dashboard')?>">Dashboard</a>
+                    <a href="fuzzy.php">Perhitungan Fuzzy</a>
                 </li>
                 <li>
                     <a href="#">Data Pasien</a>
@@ -42,13 +35,13 @@ if (!isset($_SESSION['user'])) {
                     <a href="#">Data Poliklinik</a>
                 </li>
                 <li>
-                    <a href="<?=base_url('obat/data.php')?>">Data Obat</a>
+                    <a href="#">Data Obat</a>
                 </li>
                 <li>
                     <a href="#">Rekam Medis</a>
                 </li>
                 <li>
-                    <a href="<?=base_url('auth/logout.php')?>"><span class="text-danger"><b>Logout</b></span></a>
+                    <a href="#"><span class="text-danger"><b>Logout</b></span></a>
                 </li>
             </ul>
         </div>

@@ -1,8 +1,11 @@
-<?php
-    require_once "_config/config.php";
-    if (isset($_SESSION['user'])) {
-        echo "<script>window.location='" . base_url('dashboard') . "';</script>";
-    } else {
-        echo "<script>window.location='" . base_url('auth/login.php') . "';</script>";
-    }
-?>
+<?php include_once('_header.php'); ?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+        <h1>Dashboard</h1>
+        <p>Selamat Datang di website Hafihospital</p>
+    </div>
+</div>
+
+<?php include_once('_foother.php'); ?>
