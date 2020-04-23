@@ -12,22 +12,21 @@
             <tr>
                 <td>Suhu</td>
                 <td> : </td>
-                <td><input type="float" name="suhu" placeholder="Masukkan 0-100" required> Derajat Selsius</td>
+                <td><input type="number" step=0.01 name="suhu" placeholder="Masukkan 0-100" value="<?php if (isset($_POST["submit"])) echo $_POST["suhu"] ?>" required> Derajat Selsius</td>
             </tr>
             <tr>
                 <td>Kelembapan</td>
                 <td> : </td>
-                <td><input type="float" name="kelembapan" placeholder="Masukkan 0-100" required> %</td>
+                <td><input type="number" step=0.01 name="kelembapan" placeholder="Masukkan 0-100" value="<?php if (isset($_POST["submit"])) echo $_POST["kelembapan"] ?>" required> %</td>
             </tr>
             <tr>
                 <td>Tinggi Air</td>
                 <td>: </td>
-                <td><input type="float" name="tinggiair" placeholder="Masukkan 0-15" required> cm</td>
+                <td><input type="number" step=0.01 name="tinggiair" placeholder="Masukkan 0-15" value="<?php if (isset($_POST["submit"])) echo $_POST["tinggiair"] ?>" required> cm</td>
             </tr>
             <tr>
                 <td>
                     <input type="submit" name="submit" value="Submit">
-                    <input type="reset" name="reset" value="Reset">
                 </td>
             </tr>
         </table>
@@ -39,10 +38,12 @@
 <?php
 include "rules.php";
 include "grafik.php";
+include "defuzzifikasi.php";
 if (isset($_POST["submit"])) {
-    menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-    menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-    rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
 }
 function menampilkannilaiinput($suhu, $kelembapan, $tinggiair)
 {
@@ -62,6 +63,7 @@ function nilaifuzzybanyak($suhu, $kelembapan, $tinggiair)
     echo "<br>";
     echo "Nilai Fuzzy Banyak: ";
     echo max($arrayfuzzybanyak);
+    return max($arrayfuzzybanyak);
 }
 function nilaifuzzysedikit($suhu, $kelembapan, $tinggiair)
 {
@@ -70,6 +72,7 @@ function nilaifuzzysedikit($suhu, $kelembapan, $tinggiair)
     echo "<br>";
     echo "Nilai Fuzzy Sedikit: ";
     echo max($arrayfuzzysedikit);
+    return max($arrayfuzzysedikit);
 }
 
 ?>
