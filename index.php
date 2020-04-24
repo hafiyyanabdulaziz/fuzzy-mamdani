@@ -2,9 +2,9 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-        <h1>Dashboard</h1>
-        <p>Selamat Datang di website Hafihospital</p>
+        <h1>Ricezzy</h1>
+        <p>Selamat Datang di Ricezzy. Aplikasi ini berfungsi untuk menghitung debit irigasi tanaman padi di sawah. Untuk mendapatkan hasil yang akurat, aplikasi ini menggunakan metode Fuzzy Mamdani.</p>
+        <a href="fuzzy.php" class="btn btn-primary btn-lg btn-block" id="menu-toggle">Mulai Menghitung</a>
     </div>
 </div>
 

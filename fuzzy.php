@@ -1,7 +1,6 @@
 <?php include_once('_header.php'); ?>
 
 <div class="box">
-    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
     <h1>Perhitungan Fuzzy</h1>
     <p>Menghitung debit irigasi tanaman padi<br><br><br></p>
     <form method="post" action="">
