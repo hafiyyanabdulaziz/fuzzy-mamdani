@@ -50,17 +50,17 @@ if (isset($_POST["submit"])) {
             <?php
             //grafik suhu
             grafikfungsikeanggotaansuhu();
-            //nilaigrafiksuhu($_POST["suhu"]);
+            nilaigrafiksuhu($_POST["suhu"]);
             //grafik kelembapan
             grafikfungsikeanggotaankelembapan();
-            //nilaigrafikkelembapan($_POST["kelembapan"]);
+            nilaigrafikkelembapan($_POST["kelembapan"]);
             //grafik tinggi air
             grafikfungsikeanggotaantinggiair();
-            //nilaigrafiktinggiair($_POST["tinggiair"]);
+            nilaigrafiktinggiair($_POST["tinggiair"]);
             grafikoutput();
             gambarrules();
             hasilfuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            rulesdigunakan($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            inferensi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
 
             //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
             //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);

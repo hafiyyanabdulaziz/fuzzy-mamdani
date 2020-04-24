@@ -90,10 +90,12 @@ function nilaigrafiktinggiair($tinggiair)
 }
 function hasilfuzzifikasi($suhu, $kelembapan, $tinggiair)
 {
-    echo "<p><b>Hasil Fuzzifikasi: </b></p>";
-    echo "<br>";
+    echo "<h4><b>Hasil Fuzzifikasi: </b></h4>";
+    echo "<p><b>Nilai Fuzzy Suhu: </b></p>";
     nilaigrafiksuhu($suhu);
+    echo "<p><b>Nilai Fuzzy Kelembapan: </b></p>";
     nilaigrafikkelembapan($kelembapan);
+    echo "<p><b>Nilai Fuzzy Tinggi Air: </b></p>";
     nilaigrafiktinggiair($tinggiair);
 }
 function rulesdigunakan($suhu, $kelembapan, $tinggiair)
@@ -102,5 +104,34 @@ function rulesdigunakan($suhu, $kelembapan, $tinggiair)
     echo "<br>";
     rules($suhu, $kelembapan, $tinggiair);
 }
+function inferensi($suhu, $kelembapan, $tinggiair)
+{
+    echo "<h4><b>Rules yang digunakan: </b></h4>";
+    $x = 0;
+    $no = 1;
+    $kondisi = [];
+    $nilaisuhu = [suhuminimum($suhu), suhuoptimal($suhu), suhumaksimal($suhu)];
+    $nilaikelembapan = [tidaklembab($kelembapan), sangatsesuai($kelembapan), lembab($kelembapan)];
+    $nilaitinggiair = [tinggiairkering($tinggiair), tinggiairideal($tinggiair), tinggiairbanjir($tinggiair)];
 
+    for ($i = 0; $i < 3; $i++) {
+        for ($j = 0; $j < 3; $j++) {
+            for ($k = 0; $k < 3; $k++) {
+                if (($nilaisuhu[$i] > 0) && ($nilaikelembapan[$j] > 0) && ($nilaitinggiair[$k] > 0)) {
+                    $minimal = min($nilaisuhu[$i], $nilaikelembapan[$j], $nilaitinggiair[$k]);
+                    if ($k == 0) {
+                        $kondisi[$x] = "Banyak";
+                    } else if (($i == 2) && ($k == 1) && ($j < 2)) {
+                        $kondisi[$x] = "Banyak";
+                    } else {
+                        $kondisi[$x] = "Sedikit";
+                    }
+                    echo $no . ". IF Suhu = " . $nilaisuhu[$i] . " AND Kelembapan = " . $nilaikelembapan[$j] . " AND Tinggi Air = " . $nilaitinggiair[$k] . " THAN Debit Irigasi = " . $kondisi[$x] . "(" . $minimal . ")<br>";
+                    $x++;
+                }
+                $no++;
+            }
+        }
+    }
+}
 ?>
