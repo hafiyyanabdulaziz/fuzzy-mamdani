@@ -23,6 +23,23 @@ function grafikfungsikeanggotaantinggiair()
     <br>
 <?php
 }
+function grafikoutput()
+{
+?>
+    <h4>Output</h4>
+    <p>Outputnya adalah Debit Irigasi</p>
+    <img src="_assets/img/debitirigasi.jpg" class="img-fluid" alt="Grafik Debit Irigasi">
+    <br>
+<?php
+}
+function gambarrules()
+{
+?>
+    <p>Daftar Rules:</p>
+    <img src="_assets/img/rules.jpg" class="img-fluid" alt="Daftar Rules">
+    <br>
+<?php
+}
 function nilaigrafiksuhu($suhu)
 {
     if (suhuminimum($suhu) != 0) {

@@ -54,6 +54,8 @@ if (isset($_POST["submit"])) {
             nilaigrafikkelembapan($_POST["kelembapan"]);
             grafikfungsikeanggotaantinggiair();
             nilaigrafiktinggiair($_POST["tinggiair"]);
+            grafikoutput();
+            gambarrules();
             //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
             //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
             //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
