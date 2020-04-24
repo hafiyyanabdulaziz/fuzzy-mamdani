@@ -102,4 +102,5 @@ function rulesdigunakan($suhu, $kelembapan, $tinggiair)
     echo "<br>";
     rules($suhu, $kelembapan, $tinggiair);
 }
+
 ?>
