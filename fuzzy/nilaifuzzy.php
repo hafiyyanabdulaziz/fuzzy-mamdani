@@ -13,20 +13,16 @@ function menampilkannilaiinput($suhu, $kelembapan, $tinggiair)
 
 function nilaifuzzybanyak($suhu, $kelembapan, $tinggiair)
 {
-    $arrayfuzzybanyak = array();
-    $arrayfuzzybanyak[] = min($suhu, $kelembapan, $tinggiair);
-    echo "<br>";
-    echo "Nilai Fuzzy Banyak: ";
-    echo max($arrayfuzzybanyak);
-    return max($arrayfuzzybanyak);
+    //$arrayfuzzybanyak = array();
+    //$arrayfuzzybanyak[] = min($suhu, $kelembapan, $tinggiair);
+    //return max($arrayfuzzybanyak);
+    return min($suhu, $kelembapan, $tinggiair);
 }
 
 function nilaifuzzysedikit($suhu, $kelembapan, $tinggiair)
 {
-    $arrayfuzzysedikit = array();
-    $arrayfuzzysedikit[] = min($suhu, $kelembapan, $tinggiair);
-    echo "<br>";
-    echo "Nilai Fuzzy Sedikit: ";
-    echo max($arrayfuzzysedikit);
-    return max($arrayfuzzysedikit);
+    //$arrayfuzzysedikit = array();
+    //$arrayfuzzysedikit[] = min($suhu, $kelembapan, $tinggiair);
+    //return max($arrayfuzzysedikit);
+    return min($suhu, $kelembapan, $tinggiair);
 }
