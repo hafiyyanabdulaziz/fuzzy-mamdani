@@ -57,6 +57,7 @@ if (isset($_POST["submit"])) {
             //grafik tinggi air
             grafikfungsikeanggotaantinggiair();
             nilaigrafiktinggiair($_POST["tinggiair"]);
+            //output
             grafikoutput();
             gambarrules();
             hasilfuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);

@@ -98,12 +98,14 @@ function hasilfuzzifikasi($suhu, $kelembapan, $tinggiair)
     echo "<p><b>Nilai Fuzzy Tinggi Air: </b></p>";
     nilaigrafiktinggiair($tinggiair);
 }
+/*
 function rulesdigunakan($suhu, $kelembapan, $tinggiair)
 {
     echo "<p><b>Rules yang digunakan: </b></p>";
     echo "<br>";
     rules($suhu, $kelembapan, $tinggiair);
 }
+*/
 function inferensi($suhu, $kelembapan, $tinggiair)
 {
     echo "<h4><b>Rules yang digunakan: </b></h4>";
