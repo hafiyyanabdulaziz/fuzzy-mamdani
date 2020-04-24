@@ -2,8 +2,6 @@
 
 <div class="box">
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
-
-
     <h1>Perhitungan Fuzzy</h1>
     <p>Menghitung debit irigasi tanaman padi<br><br><br></p>
     <form method="post" action="">
@@ -31,7 +29,6 @@
             </div>
         </div>
     </form>
-
 </div>
 
 <?php
@@ -42,10 +39,24 @@ include "fuzzy/defuzzifikasi.php";
 include "fuzzy/nilaifuzzy.php";
 
 if (isset($_POST["submit"])) {
-    menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-    menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-    rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-    defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    echo "Hasilnya = " . defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+?>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Penjelasan
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <?php
+            menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            ?>
+        </div>
+    </div>
+<?php
 }
 
 include_once('_foother.php');
