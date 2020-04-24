@@ -5,14 +5,7 @@ function menghitungnilaigrafik($suhu, $kelembapan, $tinggiair)
     grafikkelembapan($kelembapan);
     grafiktinggiair($tinggiair);
 }
-function grafiksuhu($suhu)
-{
-    echo "Nilai Suhu Minimum = " . suhuminimum($suhu);
-    echo "<br>";
-    echo "Nilai Suhu optimal = " . suhuoptimal($suhu);
-    echo "<br>";
-    echo "Nilai Suhu Maksimal = " . suhumaksimal($suhu);
-}
+
 function suhuminimum($suhu)
 {
     $nilaisuhuminimum = 0;
@@ -64,16 +57,7 @@ function suhumaksimal($suhu)
     }
     return $nilaisuhumaksimal;
 }
-function grafikkelembapan($kelembapan)
-{
-    echo "<br>";
-    echo "<br>";
-    echo "Nilai Kelembapan Tidak Lembab = " . tidaklembab($kelembapan);
-    echo "<br>";
-    echo "Nilai Kelembapan Sangat Sesuai = " . sangatsesuai($kelembapan);
-    echo "<br>";
-    echo "Nilai Kelembapan Lembab = " . lembab($kelembapan);
-}
+
 function tidaklembab($kelembapan)
 {
     $kelembapantidaklembab = 0;
@@ -125,18 +109,7 @@ function lembab($kelembapan)
     }
     return $kelembapanlembab;
 }
-function grafiktinggiair($tinggiair)
-{
-    echo "<br>";
-    echo "<br>";
-    echo "Nilai Tinggi Air Kering = " . tinggiairkering($tinggiair);
-    echo "<br>";
-    echo "Nilai Tinggi Air Ideal = " . tinggiairideal($tinggiair);
-    echo "<br>";
-    echo "Nilai Tinggi Air Banjir = " . tinggiairbanjir($tinggiair);
-    echo "<br>";
-    echo "<br>";
-}
+
 function tinggiairkering($tinggiair)
 {
     $nilaitinggiairkering = 0;

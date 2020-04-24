@@ -31,11 +31,11 @@
 </div>
 
 <?php
-//form
 include "fuzzy/rules.php";
 include "fuzzy/grafik.php";
 include "fuzzy/defuzzifikasi.php";
 include "fuzzy/nilaifuzzy.php";
+include "_fuzzy.php";
 
 if (isset($_POST["submit"])) {
     echo "Hasilnya = " . defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
@@ -48,10 +48,16 @@ if (isset($_POST["submit"])) {
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
             <?php
-            menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            grafikfungsikeanggotaansuhu();
+            nilaigrafiksuhu($_POST["suhu"]);
+            grafikfungsikeanggotaankelembapan();
+            nilaigrafikkelembapan($_POST["kelembapan"]);
+            grafikfungsikeanggotaantinggiair();
+            nilaigrafiktinggiair($_POST["tinggiair"]);
+            //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+            //defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
             ?>
         </div>
     </div>
