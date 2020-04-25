@@ -31,6 +31,7 @@
 </div>
 
 <?php
+$nilaiy = 0;
 include "fuzzy/rules.php";
 include "fuzzy/grafik.php";
 include "fuzzy/defuzzifikasi.php";
@@ -39,38 +40,35 @@ include "_fuzzy.php";
 
 if (isset($_POST["submit"])) {
     //echo "Hasilnya = " . defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+    //echo "Untuk mendapatkan hasil padi yang maksimal, debit irigasi harus " . $nilaiy;
 ?>
-    <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Penjelasan
-        </button>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <?php
-            //grafik suhu
-            grafikfungsikeanggotaansuhu();
-            nilaigrafiksuhu($_POST["suhu"]);
-            //grafik kelembapan
-            grafikfungsikeanggotaankelembapan();
-            nilaigrafikkelembapan($_POST["kelembapan"]);
-            //grafik tinggi air
-            grafikfungsikeanggotaantinggiair();
-            nilaigrafiktinggiair($_POST["tinggiair"]);
-            //output
-            grafikoutput();
-            gambarrules();
-            hasilfuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            inferensi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
 
-            //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            //defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
-            ?>
-        </div>
+    <div class="card card-body">
+        <?php
+        //grafik suhu
+        grafikfungsikeanggotaansuhu();
+        nilaigrafiksuhu($_POST["suhu"]);
+        //grafik kelembapan
+        grafikfungsikeanggotaankelembapan();
+        nilaigrafikkelembapan($_POST["kelembapan"]);
+        //grafik tinggi air
+        grafikfungsikeanggotaantinggiair();
+        nilaigrafiktinggiair($_POST["tinggiair"]);
+        //output
+        grafikoutput();
+        gambarrules();
+        hasilfuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+        inferensi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+
+        //menampilkannilaiinput($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+        //menghitungnilaigrafik($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+        //rules($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+        //defuzzifikasi($_POST["suhu"], $_POST["kelembapan"], $_POST["tinggiair"]);
+        ?>
     </div>
+
 <?php
+    //echo "Untuk mendapatkan hasil padi yang maksimal, debit irigasi harus " . $nilaiy;
 }
 
 include_once('_foother.php');

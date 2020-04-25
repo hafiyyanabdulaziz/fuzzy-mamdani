@@ -1,3 +1,12 @@
+<head>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
 <?php
 include "fuzzy/grafik.php";
 $ssuhu = 32.5;
@@ -49,10 +58,13 @@ function inferensi($suhu, $kelembapan, $tinggiair)
     echo "<p>Debit Irigasi Banyak(" . $nilai_banyak . ")</p>";
     echo "<p>Debit Irigasi Sedikit( " . $nilai_sedikit . ")</p>";
 }
-function nilaifuzzyoutputsedikit()
-{
-}
-function nilaifuzzyoutputbanyak()
-{
-}
+
 inferensi($ssuhu, $kkelembapan, $ttinggiair);
+?>
+
+<?php
+//<body>
+//  $y*=\frac{((1+2+3+4)*xsedikit) + ((5)*xsedikitorbanyak) + ((6+7+8+9+10)*xbanyak)}{((4)*xsedikit) + ((1)*xsedikitorbanyak)+((5)*xbanyak)}$
+
+//</body>
+?>

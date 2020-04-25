@@ -135,10 +135,10 @@ function inferensi($suhu, $kelembapan, $tinggiair)
             }
         }
     }
-    //defuzzifikasi
+    //Nilai Fuzzy Output
     $nilai_banyak = 0;
     $nilai_sedikit = 0;
-    for ($l = 0; $l < 4; $l++) {
+    for ($l = 0; $l < $x - 1; $l++) {
         if ($kondisi[$l]  == "Banyak") {
             $nilai_banyak = max($minimal[$l], $nilai_banyak);
         } else {
@@ -148,5 +148,16 @@ function inferensi($suhu, $kelembapan, $tinggiair)
     echo "<h4><b>Nilai Fuzzy Output: </b></h4>";
     echo "<p>Debit Irigasi Banyak(" . $nilai_banyak . ")</p>";
     echo "<p>Debit Irigasi Sedikit( " . $nilai_sedikit . ")</p>";
+    //Defuzzifikasi
+    $nilaiy = ((10 * $nilai_sedikit) + (40 * $nilai_banyak) + 0.5) / ((4 * $nilai_sedikit) + (5 * $nilai_banyak) + 0.5);
+    echo "<h4><b>Banyaknya Debit Irigasi: </b>" . $nilaiy . " L/s/Ha</h4>";
+    /*
+    function outputnilaidefuzzifikasi($xxx, $y = "ddddd")
+    {
+        return $y;
+    }
+    $saaa = 8;
+    echo outputnilaidefuzzifikasi($saaa);
+    */
 }
 ?>
