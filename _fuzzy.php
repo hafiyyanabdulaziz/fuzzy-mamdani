@@ -141,18 +141,13 @@ function inferensi($suhu, $kelembapan, $tinggiair)
     echo "<p>Debit Irigasi Banyak(" . $nilai_banyak . ")</p>";
     echo "<p>Debit Irigasi Sedikit( " . $nilai_sedikit . ")</p>";
     //Defuzzifikasi
-    echo '<img src="https://latex.codecogs.com/svg.latex?y*&space;=&space;\frac{((0&plus;1&plus;2&plus;3&plus;4)*xxx)&plus;((5)*0,5)&plus;((6&plus;7&plus;8&plus;9&plus;10)*yyy)}{((5)*xxx)&plus;((1)*0,5)&plus;((5)*yyy)}" title="y* = \frac{((0+1+2+3+4)*xxx)+((5)*0,5)+((6+7+8+9+10)*yyy)}{((5)*xxx)+((1)*0,5)+((5)*yyy)}" />';
-    //echo "$y* = \frac{((0+1+2+3+4)*xxx)+((5)*0,5)+((6+7+8+9+10)*yyy)}{((5)*xxx)+((1)*0,5)+((5)*yyy)}$";
-?>
-    <h4><b>Defuzzifikasi</b></h4>
-    <p>Menggunakan metode Centroid Method</p>
-    <img src="_assets/img/debitirigasi.jpg" class="img-fluid" alt="Grafik Debit Irigasi">
-    <p>Sampel yang diambil adalah titik 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Kemudian dimasukkan ke dalam rumus:</p>
-    <br>
-    <img src="https://latex.codecogs.com/svg.latex?y*&space;=&space;\frac{((0&plus;1&plus;2&plus;3&plus;4)*xxx)&plus;((5)*0,5)&plus;((6&plus;7&plus;8&plus;9&plus;10)*yyy)}{((5)*xxx)&plus;((1)*0,5)&plus;((5)*yyy)}" title="y* = \frac{((0+1+2+3+4)*xxx)+((5)*0,5)+((6+7+8+9+10)*yyy)}{((5)*xxx)+((1)*0,5)+((5)*yyy)}" />
-<?php
+    echo '<h4><b>Defuzzifikasi</b></h4>';
+    echo '<p>Menggunakan metode Centroid Method</p>';
+    echo '<img src="_assets/img/defuzzifikasi.jpg" class="img-fluid" alt="Grafik Debit Irigasi">';
+    echo '<p>Sampel yang diambil adalah titik 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Kemudian dimasukkan ke dalam rumus:</p>';
+    echo '<img src="https://latex.codecogs.com/svg.latex?y*&space;=&space;\frac{((0&plus;1&plus;2&plus;3&plus;4)*' . $nilai_sedikit . ')&plus;((5)*0,5)&plus;((6&plus;7&plus;8&plus;9&plus;10)*' . $nilai_banyak . ')}{((5)*' . $nilai_sedikit . ')&plus;((1)*0,5)&plus;((5)*' . $nilai_banyak . ')}"/>';
     $nilaiy = ((10 * $nilai_sedikit) + (40 * $nilai_banyak) + 0.5) / ((5 * $nilai_sedikit) + (5 * $nilai_banyak) + 0.5);
-    echo "<h4><b>Banyaknya Debit Irigasi: </b>" . $nilaiy . " L/s/Ha</h4>";
+    echo "<br><h4><b>Banyaknya Debit Irigasi (y*)= </b>" . $nilaiy . " L/s/Ha</h4>";
 }
 function suhuminimum($suhu)
 {
