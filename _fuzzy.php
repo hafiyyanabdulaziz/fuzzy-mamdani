@@ -151,8 +151,8 @@ function suhuminimum($suhu)
     if ($suhu <= 5) {
         $nilaisuhuminimum = 1;
     } else {
-        if ($suhu < 15) {
-            $nilaisuhuminimum = (15 - $suhu) / 10;
+        if ($suhu < 25) {
+            $nilaisuhuminimum = (25 - $suhu) / 20;
         } else {
             $nilaisuhuminimum = 0;
         }
@@ -163,14 +163,14 @@ function suhuoptimal($suhu)
 {
     $nilaisuhuoptimal = 0;
     //suhu optimal
-    if ($suhu >= 15 && $suhu <= 35) {
+    if ($suhu >= 5 && $suhu <= 35) {
         if ($suhu >= 25 && $suhu <= 30) {
             $nilaisuhuoptimal = 1;
         } else {
-            if ($suhu >= 15 && $suhu < 25) {
-                $nilaisuhuoptimal = ($suhu - 15) / 10;
+            if ($suhu >= 5 && $suhu < 25) {
+                $nilaisuhuoptimal = ($suhu - 5) / 10;
             } else {
-                if ($suhu > 30 && $suhu < 35) {
+                if ($suhu > 30 && $suhu <= 35) {
                     $nilaisuhuoptimal = (35 - $suhu) / 5;
                 } else {
                     $nilaisuhuoptimal = 0;
@@ -195,7 +195,6 @@ function suhumaksimal($suhu)
     }
     return $nilaisuhumaksimal;
 }
-
 function tidaklembab($kelembapan)
 {
     $kelembapantidaklembab = 0;
@@ -215,15 +214,15 @@ function sangatsesuai($kelembapan)
 {
     $nilaikelembapansangatsesuai = 0;
     //sangat sesuai
-    if ($kelembapan >= 50 && $kelembapan <= 80) {
+    if ($kelembapan >= 50 && $kelembapan <= 85) {
         if ($kelembapan >= 60 && $kelembapan <= 70) {
             $nilaikelembapansangatsesuai = 1;
         } else {
             if ($kelembapan >= 50 && $kelembapan < 60) {
                 $nilaikelembapansangatsesuai = ($kelembapan - 50) / 10;
             } else {
-                if ($kelembapan > 70 && $kelembapan < 80) {
-                    $nilaikelembapansangatsesuai = (80 - $kelembapan) / 10;
+                if ($kelembapan > 70 && $kelembapan <= 85) {
+                    $nilaikelembapansangatsesuai = (85 - $kelembapan) / 15;
                 } else {
                     $nilaikelembapansangatsesuai = 0;
                 }
@@ -239,8 +238,8 @@ function lembab($kelembapan)
     if ($kelembapan >= 85) {
         $kelembapanlembab = 1;
     } else {
-        if ($kelembapan >= 83 && $kelembapan < 85) {
-            $kelembapanlembab = ($kelembapan - 83) / 2;
+        if ($kelembapan >= 70 && $kelembapan < 85) {
+            $kelembapanlembab = ($kelembapan - 70) / 15;
         } else {
             $kelembapanlembab = 0;
         }
@@ -254,8 +253,8 @@ function tinggiairkering($tinggiair)
     if ($tinggiair <= 1) {
         $nilaitinggiairkering = 1;
     } else {
-        if ($tinggiair <= 2) {
-            $nilaitinggiairkering = (2 - $tinggiair);
+        if ($tinggiair <= 3) {
+            $nilaitinggiairkering = (3 - $tinggiair) / 2;
         } else {
             $nilaitinggiairkering = 0;
         }
@@ -266,15 +265,15 @@ function tinggiairideal($tinggiair)
 {
     $nilaitinggiairideal = 0;
     //tinggi air ideal
-    if ($tinggiair >= 2 && $tinggiair <= 7) {
+    if ($tinggiair >= 1 && $tinggiair <= 10) {
         if ($tinggiair >= 3 && $tinggiair <= 5) {
             $nilaitinggiairideal = 1;
         } else {
-            if ($tinggiair >= 2 && $tinggiair < 3) {
-                $nilaitinggiairideal = ($tinggiair - 2);
+            if ($tinggiair >= 1 && $tinggiair < 3) {
+                $nilaitinggiairideal = ($tinggiair - 1) / 2;
             } else {
-                if ($tinggiair > 5 && $tinggiair <= 8) {
-                    $nilaitinggiairideal = (8 - $tinggiair) / 3;
+                if ($tinggiair > 5 && $tinggiair <= 10) {
+                    $nilaitinggiairideal = (10 - $tinggiair) / 5;
                 } else {
                     $nilaitinggiairideal = 0;
                 }
@@ -287,11 +286,11 @@ function tinggiairbanjir($tinggiair)
 {
     $nilaitinggiairbanjir = 0;
     //tinggi air banjir
-    if ($tinggiair > 10) {
+    if ($tinggiair >= 10) {
         $nilaitinggiairbanjir = 1;
     } else {
-        if ($tinggiair >= 8 && $tinggiair <= 10) {
-            $nilaitinggiairbanjir = ($tinggiair - 8) / 2;
+        if ($tinggiair >= 5 && $tinggiair <= 10) {
+            $nilaitinggiairbanjir = ($tinggiair - 5) / 5;
         } else {
             $nilaitinggiairbanjir = 0;
         }
