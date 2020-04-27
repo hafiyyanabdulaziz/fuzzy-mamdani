@@ -173,7 +173,7 @@ function suhuoptimal($suhu)
             $nilaisuhuoptimal = 1;
         } else {
             if ($suhu >= 5 && $suhu < 25) {
-                $nilaisuhuoptimal = ($suhu - 5) / 10;
+                $nilaisuhuoptimal = ($suhu - 5) / 20;
             } else {
                 if ($suhu > 30 && $suhu <= 35) {
                     $nilaisuhuoptimal = (35 - $suhu) / 5;
